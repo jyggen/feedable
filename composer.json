@@ -1,0 +1,30 @@
+{
+    "name": "jyggen/feedable",
+    "description": ":package_description",
+    "keywords": [
+        "rss",
+        "atom",
+        "rdf",
+        "feed",
+        "syndicate"
+    ],
+    "homepage": "https://github.com/jyggen/feedable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonas Stendahl",
+            "email": "jonas.stendahl@gmail.com",
+            "homepage": "http://jyggen.com/",
+            "role": "Developer"
+        }
+    ],
+    "require-dev": {
+        "league/phpunit-coverage-listener": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Feedable\\": "src",
+            "Feedable\\Tests\\": "tests"
+        }
+    }
+}
