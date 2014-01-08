@@ -1,10 +1,8 @@
-# League Skeleton
+# Feedable
 
-[![Build Status](https://travis-ci.org/php-loep/statsd.png?branch=master)](https://travis-ci.org/php-loep/statsd)
-[![Total Downloads](https://poser.pugx.org/league/statsd/downloads.png)](https://packagist.org/packages/league/statsd)
-[![Latest Stable Version](https://poser.pugx.org/league/statsd/v/stable.png)](https://packagist.org/packages/league/statsd)
-
-**Replace Statsd with your own package name in the above URLs**
+[![Build Status](https://travis-ci.org/jyggen/feedable.png?branch=master)](https://travis-ci.org/jyggen/feedable)
+[![Total Downloads](https://poser.pugx.org/jyggen/feedable/downloads.png)](https://packagist.org/packages/jyggen/feedable)
+[![Latest Stable Version](https://poser.pugx.org/jyggen/feedable/v/stable.png)](https://packagist.org/packages/jyggen/feedable)
 
 :package_description
 
@@ -16,7 +14,7 @@ Via Composer
 ``` json
 {
     "require": {
-        "league/:package_name": "~1.0"
+        "jyggen/feedable": "~1.0"
     }
 }
 ```
@@ -38,17 +36,12 @@ $ phpunit
 ```
 
 
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/php-loep/:package_name/blob/master/CONTRIBUTING.md) for details.
-
-
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](https://github.com/php-loep/:package_name/contributors)
+- [Jonas Stendahl](https://github.com/jyggen)
+- [All Contributors](https://github.com/jyggen/feedable/contributors)
 
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/php-loep/:package_name/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/jyggen/feedable/blob/master/LICENSE) for more information.
