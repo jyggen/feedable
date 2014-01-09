@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/jyggen/feedable/downloads.png)](https://packagist.org/packages/jyggen/feedable)
 [![Latest Stable Version](https://poser.pugx.org/jyggen/feedable/v/stable.png)](https://packagist.org/packages/jyggen/feedable)
 
-:package_description
+Feedable is a simple and lightweight library which allows you to easily create RSS and Atom feeds.
 
 
 ## Install
@@ -23,10 +23,12 @@ Via Composer
 
 ## Usage
 
-``` php
-$feedable = new Feedable\Feed(new Feedable\Formatter\RSS);
-echo $feedable->render();
+First you'll have to decide which feed format you'd like to use. Feedable currently supports `Atom`, `RDF` and `RSS`.
 
+To create a new RSS feed for example you'll have to pass an instance of `Feedable\Formatter\RSS` to `Feedable\Feed`, like this:
+
+``` php
+$feed = new Feedable\Feed(new Feedable\Formatter\RSS);
 ```
 
 
