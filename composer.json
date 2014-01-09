@@ -1,6 +1,6 @@
 {
     "name": "jyggen/feedable",
-    "description": ":package_description",
+    "description": "Feedable is a simple and lightweight library which allows you to easily create RSS and Atom feeds.",
     "keywords": [
         "rss",
         "atom",
