@@ -1,6 +1,7 @@
 <?php
 namespace Feedable\Tests\Formatter;
 
+use DateTime;
 use DOMDocument;
 use Feedable\Formatter\Atom;
 
@@ -73,6 +74,23 @@ Feed;
     /**
      * @dataProvider atomProvider
      */
+    public function testSetGenerator($atom, $document)
+    {
+        $output = <<<Feed
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US" xml:base="http://example.com/">
+  <generator uri="http://example.com/" version="foobar">1.0</generator>
+</feed>
+
+Feed;
+
+        $atom->setGenerator('1.0', 'foobar', 'http://example.com/');
+        $this->assertSame($output, $document->saveXML());
+    }
+
+    /**
+     * @dataProvider atomProvider
+     */
     public function testSetTitle($atom, $document)
     {
         $output = <<<Feed
@@ -84,6 +102,25 @@ Feed;
 Feed;
 
         $atom->setTitle('foobar');
+        $this->assertSame($output, $document->saveXML());
+    }
+
+    /**
+     * @dataProvider atomProvider
+     */
+    public function testSetUpdatedAt($atom, $document)
+    {
+        $date   = new DateTime;
+        $format = $date->format(DateTime::ATOM);
+        $output = <<<Feed
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US" xml:base="http://example.com/">
+  <updated>$format</updated>
+</feed>
+
+Feed;
+
+        $atom->setUpdatedAt($date);
         $this->assertSame($output, $document->saveXML());
     }
 
