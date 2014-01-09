@@ -24,8 +24,8 @@ Via Composer
 ## Usage
 
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+$feedable = new Feedable\Feed(new Feedable\Formatter\RSS);
+echo feedable->render();
 
 ```
 
