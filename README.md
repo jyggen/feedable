@@ -25,7 +25,7 @@ Via Composer
 
 ``` php
 $feedable = new Feedable\Feed(new Feedable\Formatter\RSS);
-echo feedable->render();
+echo $feedable->render();
 
 ```
 
