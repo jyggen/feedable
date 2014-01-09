@@ -1,6 +1,7 @@
 # Feedable
 
 [![Build Status](https://travis-ci.org/jyggen/feedable.png?branch=master)](https://travis-ci.org/jyggen/feedable)
+[![Coverage Status](https://coveralls.io/repos/jyggen/feedable/badge.png)](https://coveralls.io/r/jyggen/feedable)
 [![Total Downloads](https://poser.pugx.org/jyggen/feedable/downloads.png)](https://packagist.org/packages/jyggen/feedable)
 [![Latest Stable Version](https://poser.pugx.org/jyggen/feedable/v/stable.png)](https://packagist.org/packages/jyggen/feedable)
 
