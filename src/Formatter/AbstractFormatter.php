@@ -37,8 +37,8 @@ abstract class AbstractFormatter implements FormatterInterface
         $this->root->appendChild($element);
 
         if (strpos($tag, ':') !== false) {
-            list($prefix, $suffix) = explode(':', $tag);
-            $namespace             = $this->resolveNamespace($prefix);
+            $parts     = explode(':', $tag);
+            $namespace = $this->resolveNamespace($parts[0]);
             $this->document->createAttributeNS($namespace, $tag);
         }
 
@@ -61,9 +61,9 @@ abstract class AbstractFormatter implements FormatterInterface
                 }
 
                 if (strpos($attribute, ':') !== false) {
-                    list($prefix, $suffix) = explode(':', $attribute);
-                    $namespace             = $this->resolveNamespace($prefix);
-                    $attribute             = $this->document->createAttributeNS($namespace, $attribute);
+                    $parts     = explode(':', $attribute);
+                    $namespace = $this->resolveNamespace($parts[0]);
+                    $attribute = $this->document->createAttributeNS($namespace, $attribute);
                 } else {
                     $attribute = $this->document->createAttribute($attribute);
                 }
