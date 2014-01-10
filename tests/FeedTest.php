@@ -42,6 +42,22 @@ class FeedTest extends \PHPUnit_Framework_TestCase
         $date      = DateTime::createFromFormat('Y-m-d', date('Y-m-d'))->format(DateTime::RSS);
         $output    = <<<RSS
 <?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" version="2.0"><channel><generator>$generator</generator><lastBuildDate>$date</lastBuildDate><language>en-US</language><sy:updatePeriod>hourly</sy:updatePeriod><sy:updateFrequency>1</sy:updateFrequency></channel></rss>
+
+RSS;
+
+        $this->assertSame($output, $feed->render());
+    }
+
+    /**
+     * @dataProvider feedProvider
+     */
+    public function testRenderPretty($feed)
+    {
+        $generator = Feed::URI;
+        $date      = DateTime::createFromFormat('Y-m-d', date('Y-m-d'))->format(DateTime::RSS);
+        $output    = <<<RSS
+<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" version="2.0">
   <channel>
     <generator>$generator</generator>
@@ -55,6 +71,15 @@ class FeedTest extends \PHPUnit_Framework_TestCase
 RSS;
 
         $this->assertSame($output, $feed->render(true));
+    }
+
+    /**
+     * @dataProvider feedProvider
+     * @expectedException UnexpectedValueException
+     */
+    public function testRenderInvalidParameter($feed)
+    {
+        $feed->render('invalid');
     }
 
     /**
