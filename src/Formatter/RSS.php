@@ -2,49 +2,69 @@
 namespace Feedable\Formatter;
 
 use DateTime;
+use Feedable\ItemInterface;
 
 class RSS extends AbstractFormatter
 {
+    public function addItem(ItemInterface $item)
+    {
+        $node = $this->root->addElement('item');
+        $node->addElement('title', $item->getItemTitle());
+        $node->addElement('link', $item->getItemUrl());
+        $node->addElement('pubDate', $item->getItemCreatedAt());
+        $node->addElement('dc:creator', $item->getItemAuthor(), array(), true);
+        $node->addElement('guid', $item->getItemIdentifier(), array(
+            'isPermaLink' => false,
+        ));
+        $node->addElement('description', $item->getItemDescription(), array(), true);
+        $node->addElement('content:encoded', $item->getItemDescription(), array(), true);
+    }
+
     public function finalize()
     {
-        $this->addElement('language', 'en-US'); // @todo: configurable
-        $this->addElement('sy:updatePeriod', 'hourly'); // @todo: cache aware
-        $this->addElement('sy:updateFrequency', 1); // @todo: cache aware
+        $this->root->addElement('language', 'en-US'); // @todo: configurable
+        $this->root->addElement('sy:updatePeriod', 'hourly'); // @todo: cache aware
+        $this->root->addElement('sy:updateFrequency', 1); // @todo: cache aware
     }
 
     public function getRootElement()
     {
-        $this->root = $this->addElement('rss', null, array('version' => '2.0'));
-        return $this->addElement('channel');
+        return $this->document->addElement('rss', null, array(
+            'version' => '2.0',
+        ))->addElement('channel');
     }
 
     public function setBaseUrl($value)
     {
-        $this->addElement('link', $value);
+        $this->root->addElement('link', $value);
     }
 
     public function setDescription($value)
     {
-        $this->addElement('description', $value);
+        $this->root->addElement('description', $value);
     }
 
     public function setGenerator($name, $version, $uri)
     {
-        $this->addElement('generator', $uri);
+        $this->root->addElement('generator', $uri);
     }
 
     public function setTitle($value)
     {
-        $this->addElement('title', $value);
+        $this->root->addElement('title', $value);
     }
 
     public function setUpdatedAt(DateTime $value)
     {
-        $this->addElement('lastBuildDate', $value->format(DateTime::RSS));
+        $this->root->addElement('lastBuildDate', $value->format(DateTime::RSS));
     }
 
     public function setUrl($value)
     {
-        $this->addElement('atom:link', null, array('href' => $value, 'rel' => 'self', 'type' => 'application/rss+xml'));
+        $this->root->addElement('atom:link', null, array(
+            'href' => $value,
+            'rel'  => 'self',
+            'type' => 'application/rss+xml',
+        ));
     }
 }

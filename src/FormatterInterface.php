@@ -6,6 +6,8 @@ use DOMDocument;
 
 interface FormatterInterface
 {
+    public function addItem(ItemInterface $item);
+
     public function bootstrap(DOMDocument $document);
 
     public function finalize();

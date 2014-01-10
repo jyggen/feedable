@@ -22,6 +22,18 @@ class Feed
         $formatter->bootstrap($this->document);
     }
 
+    public function addItem(ItemInterface $item)
+    {
+        $this->formatter->addItem($item);
+    }
+
+    public function addItemCollection(array $items)
+    {
+        foreach ($items as $item) {
+            $this->addItem($item);
+        }
+    }
+
     public function formatOutput($formatOutput)
     {
         if (is_bool($formatOutput) === false) {
@@ -41,8 +53,14 @@ class Feed
         return $this->formatter;
     }
 
-    public function render()
+    public function render($formatOutput = false)
     {
+        if (is_bool($formatOutput) === false) {
+            throw new UnexpectedValueException('Argument 1 must be bool, '.gettype($formatOutput).' given');
+        }
+
+        $this->document->formatOutput = $formatOutput;
+
         $this->formatter->setGenerator(Feed::NAME, Feed::VERSION, Feed::URI);
         $this->formatter->setUpdatedAt(new DateTime);
         $this->formatter->finalize();

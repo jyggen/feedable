@@ -18,41 +18,46 @@ class RDF extends AbstractFormatter
         </rdf:Seq>
          */
 
-        $this->addElement('sy:updatePeriod', 'hourly'); // @todo: cache aware
-        $this->addElement('sy:updateFrequency', 1); // @todo: cache aware
-        $this->addElement('sy:updateBase', '2000-01-01T12:00+00:00');
-        $this->addElement('items');
+        $this->root->addElement('sy:updatePeriod', 'hourly'); // @todo: cache aware
+        $this->root->addElement('sy:updateFrequency', 1); // @todo: cache aware
+        $this->root->addElement('sy:updateBase', '2000-01-01T12:00+00:00');
+        $this->root->addElement('items');
     }
 
     public function getRootElement()
     {
-        $this->root = $this->addElement('rdf:RDF', null, array('xmlns' => 'http://purl.org/rss/1.0/'));
-        return $this->addElement('channel', null, array('rdf:about' => 'http://example.com/')); // @todo: use baseUrl
+        return $this->root->addElement('rdf:RDF', null, array(
+            'xmlns' => 'http://purl.org/rss/1.0/',
+        ))->addElement('channel', null, array(
+            'rdf:about' => 'http://example.com/', // @todo: use baseUrl
+        ));
     }
 
     public function setBaseUrl($value)
     {
-        $this->addElement('link', $value);
+        $this->root->addElement('link', $value);
     }
 
     public function setDescription($value)
     {
-        $this->addElement('description', $value);
+        $this->root->addElement('description', $value);
     }
 
     public function setGenerator($name, $version, $uri)
     {
-        $this->addElement('admin:generatorAgent', null, array('rdf:resource' => $uri));
+        $this->root->addElement('admin:generatorAgent', null, array(
+            'rdf:resource' => $uri,
+        ));
     }
 
     public function setTitle($value)
     {
-        $this->addElement('title', $value);
+        $this->root->addElement('title', $value);
     }
 
     public function setUpdatedAt(DateTime $value)
     {
-        $this->addElement('dc:date', $value->format(DateTime::ATOM));
+        $this->root->addElement('dc:date', $value->format(DateTime::ATOM));
     }
 
     public function setUrl($value)

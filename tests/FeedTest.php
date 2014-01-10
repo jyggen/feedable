@@ -35,19 +35,6 @@ class FeedTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider feedProvider
-     */
-    public function testFormatOutput($feed)
-    {
-        $document  = $feed->getDocument();
-        $this->assertFalse($document->formatOutput);
-        $feed->formatOutput(true);
-        $this->assertTrue($document->formatOutput);
-        $feed->formatOutput(false);
-        $this->assertFalse($document->formatOutput);
-    }
-
-    /**
-     * @dataProvider feedProvider
      * @expectedException UnexpectedValueException
      */
     public function testFormatOutputNonBoolValue($feed)
@@ -76,8 +63,7 @@ class FeedTest extends \PHPUnit_Framework_TestCase
 
 RSS;
 
-        $feed->formatOutput(true);
-        $this->assertSame($output, $feed->render());
+        $this->assertSame($output, $feed->render(true));
     }
 
     /**
@@ -102,9 +88,8 @@ RSS;
 
 RSS;
 
-        $feed->formatOutput(true);
         $feed->setBaseUrl('foobar');
-        $this->assertSame($output, $feed->render());
+        $this->assertSame($output, $feed->render(true));
     }
 
     /**
@@ -129,9 +114,8 @@ RSS;
 
 RSS;
 
-        $feed->formatOutput(true);
         $feed->setDescription('foobar');
-        $this->assertSame($output, $feed->render());
+        $this->assertSame($output, $feed->render(true));
     }
 
     /**
@@ -156,9 +140,8 @@ RSS;
 
 RSS;
 
-        $feed->formatOutput(true);
         $feed->setTitle('foobar');
-        $this->assertSame($output, $feed->render());
+        $this->assertSame($output, $feed->render(true));
     }
 
     /**
@@ -183,8 +166,7 @@ RSS;
 
 RSS;
 
-        $feed->formatOutput(true);
         $feed->setUrl('foobar');
-        $this->assertSame($output, $feed->render());
+        $this->assertSame($output, $feed->render(true));
     }
 }
