@@ -35,15 +35,6 @@ class FeedTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider feedProvider
-     * @expectedException UnexpectedValueException
-     */
-    public function testFormatOutputNonBoolValue($feed)
-    {
-        $feed->formatOutput('foobar');
-    }
-
-    /**
-     * @dataProvider feedProvider
      */
     public function testRender($feed)
     {

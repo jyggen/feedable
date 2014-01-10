@@ -34,15 +34,6 @@ class Feed
         }
     }
 
-    public function formatOutput($formatOutput)
-    {
-        if (is_bool($formatOutput) === false) {
-            throw new UnexpectedValueException('Argument 1 must be bool, '.gettype($formatOutput).' given');
-        }
-
-        $this->document->formatOutput = $formatOutput;
-    }
-
     public function getDocument()
     {
         return $this->document;
