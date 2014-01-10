@@ -2,9 +2,14 @@
 namespace Feedable\Formatter;
 
 use DateTime;
+use Feedable\ItemInterface;
 
 class RDF extends AbstractFormatter
 {
+    public function addItem(ItemInterface $item)
+    {
+    }
+
     public function finalize()
     {
         /*

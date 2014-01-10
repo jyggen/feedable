@@ -2,9 +2,14 @@
 namespace Feedable\Formatter;
 
 use DateTime;
+use Feedable\ItemInterface;
 
 class Atom extends AbstractFormatter
 {
+    public function addItem(ItemInterface $item)
+    {
+    }
+
     public function getRootElement()
     {
         return $this->root->addElement('feed', null, array(
