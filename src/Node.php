@@ -69,7 +69,7 @@ class Node
             }
         }
 
-        return new Self($element, $this->document);
+        return new static($element, $this->document);
     }
 
     protected function resolveNamespace($namespace)
